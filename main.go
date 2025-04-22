@@ -9,10 +9,13 @@ import (
 )
 
 func main() {
-
+	// Try to get the Slack token from environment variables
 	slackToken := os.Getenv("slackToken")
+
+	// If not found, attempt to load from .env file
 	if slackToken == "" {
-		log.Fatal("No Slack token found in system environments")
+		log.Println("No Slack token found in system environments")
+
 		err := godotenv.Load()
 		if err != nil {
 			log.Fatal("Error loading .env file")
@@ -26,7 +29,7 @@ func main() {
 		}
 
 	}
-
-	fmt.Println(slackToken)
+	// Token successfully found
+	fmt.Println("Slack token loaded successfully:", slackToken)
 
 }
